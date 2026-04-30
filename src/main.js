@@ -22,10 +22,15 @@ function addTask() {
 
     const $btnEdit = $li.querySelector(".btn-edit");
     const $btnDelete = $li.querySelector(".btn-delete");
-    
+
     // Editar tarea
-    $btnEdit.addEventListener("click", () =>  console.log("Editar tarea:", task));
-    $btnDelete.addEventListener("click",()=> console.log("Eliminar tarea:", task));
+    $btnEdit.addEventListener("click", () =>
+      console.log("Editar tarea:", task),
+    );
+    // Eliminar tarea
+    $btnDelete.addEventListener("click", () =>
+      console.log("Eliminar tarea:", task),
+    );
   }
 
   $inputTask.value = "";
