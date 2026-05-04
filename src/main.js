@@ -1,4 +1,4 @@
-import TodoItem from "./components/item";
+import { addTodo } from "./store";
 
 const $btnAdd = document.querySelector("button");
 const $inputTask = document.querySelector("input");
@@ -15,22 +15,12 @@ function addTask() {
   const task = $inputTask.value.trim();
 
   if (task) {
-    const $li = document.createElement("li");
+    const id = Date.now().toString(36);
+    const todo = { id , name: task, completed: false };
+    addTodo(todo);
     // $li.textContent = task;
-    $li.innerHTML = TodoItem(task);
-    $list.appendChild($li);
-
-    const $btnEdit = $li.querySelector(".btn-edit");
-    const $btnDelete = $li.querySelector(".btn-delete");
-
-    // Editar tarea
-    $btnEdit.addEventListener("click", () =>
-      console.log("Editar tarea:", task),
-    );
-    // Eliminar tarea
-    $btnDelete.addEventListener("click", () =>
-      console.log("Eliminar tarea:", task),
-    );
+    //const $li = TodoItem(task);
+    // $list.appendChild($li);
   }
 
   $inputTask.value = "";

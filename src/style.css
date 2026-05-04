@@ -1,5 +1,11 @@
 
-
 .active{
     background-color: red;
+}
+.todo-item input{
+    border: none;
+}
+
+.todo-item input.editable{
+    border: 1px solid black;
 }
