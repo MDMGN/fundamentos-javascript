@@ -1,14 +1,12 @@
-export default function TodoItem(
-  task = "",
-  onEdit = () => {},
-  onDelete = () => {},
-) {
+export default function TodoItem(todo, onEdit = () => {}, onDelete = () => {}) {
+  const { id, name, completed } = todo;
   // creamos la referencia al elemento li
   const $li = document.createElement("li");
+
   // Le asignamos el contenido HTML al elemento li, incluyendo los botones de editar y eliminar
   $li.innerHTML = `
   <div class="todo-item">
-    <input type="text" value="${task}" readonly />
+    <input type="text" value="${name}" readonly />
     <button class="btn-edit">Editar</button> 
     <button class="btn-delete">Eliminar</button>
    </div>

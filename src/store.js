@@ -1,10 +1,10 @@
-const todosStore = JSON.parse(localStorage.getItem("todos")) || [];
+// store.js
 
-function addTodo({ id, name, completed }) {
-  const task = { id, name, completed };
-  todosStore.push(task);
+const todosStore = JSON.parse(localStorage.getItem("todos")) ?? [];
+
+function addTodo(todo) {
+  todosStore.push(todo);
   localStorage.setItem("todos", JSON.stringify(todosStore));
-  console.log(todosStore);
 }
 
 function removeTodo(id) {}
