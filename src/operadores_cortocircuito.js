@@ -33,3 +33,28 @@ const user = { name: "Darren", email: "darren@example.com" };
 console.log(user.email?.trim()); // Si user.email es undefined o null, no se intentará llamar a trim() y el resultado será undefined en lugar de causar un error.
 
 console.log(user.info?.address?.street); // Si user.info es undefined o null, no se intentará acceder a address.street y el resultado será undefined en lugar de causar un error.
+
+const a = { duration: 50 };
+
+a.speed ??= 25;
+console.log(a.speed);
+// Expected output: 25
+/* try {
+  const b = await fetch("https://jsonplaceholder.typicode.com/todoss/1").then(
+    (res) => res.json() ?? "Valor por defecto",
+  );
+
+  console.log({ b });
+} catch (error) {
+  console.error(error);
+}
+ */
+
+// Logical assignment operators (&&=, ||=, ??=) -> combinan los operadores lógicos con la asignación
+const b = await fetch("https://jsonplaceholder.typicode.com/todoss/1").then(
+  (res) => res.json(),
+);
+
+b.title ??= "Valor por defecto";
+
+console.log({ b });

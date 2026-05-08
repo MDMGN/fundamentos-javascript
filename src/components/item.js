@@ -1,4 +1,8 @@
-export default function TodoItem(todo, onEdit = () => {}, onDelete = () => {}) {
+export default function TodoItem(
+  todo,
+  onEdit = (newTodo) => {},
+  onDelete = (id) => {},
+) {
   const { id, name, completed } = todo;
   // creamos la referencia al elemento li
   const $li = document.createElement("li");
@@ -12,7 +16,7 @@ export default function TodoItem(todo, onEdit = () => {}, onDelete = () => {}) {
    </div>
   `;
   // Registramos los eventos de click para los botones de editar y eliminar, llamando a las funciones onEdit y onDelete respectivamente
-  const $btnEdit = $li.querySelector(".btn-edit");
+  const $btnEdit = $li.querySelector(".btn-edit"); // "[readonly]" es un selector de atributo que selecciona el elemento input que tiene el atributo readonly
   const $btnDelete = $li.querySelector(".btn-delete");
   const $input = $li.querySelector("input");
 
@@ -25,11 +29,15 @@ export default function TodoItem(todo, onEdit = () => {}, onDelete = () => {}) {
     } else {
       $input.setAttribute("readonly", true);
       $btnEdit.textContent = "Editar";
+      const newTodo = { id, name: $input.value.trim(), completed };
+      onEdit(newTodo);
     }
   });
 
-  $btnDelete.addEventListener("click", () => $li.remove());
-
+  $btnDelete.addEventListener("click", () => {
+    $li.remove();
+    onDelete(id);
+  });
   // Retornamos el elemento li creado
   return $li;
 }
